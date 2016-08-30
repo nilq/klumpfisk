@@ -6,6 +6,7 @@ function Utility.indexElement(a, n)
       return i
     end
   end
+  return false
 end
 
 function Utility.mergeTable(a, b)
