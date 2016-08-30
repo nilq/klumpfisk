@@ -1,6 +1,6 @@
 Property = {}
 
-function Property:newProperty(name, initial, set, get)
+function Property:newValue(name, initial, get, set)
   self[name] = initial
 
   self["get" .. name] = get or function(self)
@@ -15,9 +15,28 @@ function Property:newProperty(name, initial, set, get)
   return self
 end
 
-function Property:newTableProperty(name, initial, get, set
+function Property:newBoolean(name, initial, get, set,
+    enable, disable, toggle)
+  Property.newValue(self, name, initial, get, set)
+
+  self["enable" .. name] = enable or function(self)
+    self["set" .. name](self, true)
+  end
+
+  self["disable" .. name] = disable or function(self)
+    self["set" .. name](self, false)
+  end
+
+  self["toggle" .. name] = toggle or function(self)
+    self["set" .. name](self, not self[name])
+  end
+
+  return self
+end
+
+function Property:newTable(name, initial, get, set
     getCopy, getSub, setSub)
-  Property.newProperty(self, name, default, set, get)
+  Property.newValue(self, name, default, get, set)
 
   self["copy" .. name] = getCopy or function(self)
     return Utility.copy(self[name])
@@ -33,5 +52,3 @@ function Property:newTableProperty(name, initial, get, set
   end
   return self
 end
-
-a:copyFoo()
