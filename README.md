@@ -8,10 +8,6 @@ A fancy framework for game development to be used a long with LÖVE. Implementin
 
 ---
 ###Examples
-Use wherever you like -- i.e. *main.lua*
-```lua
-require "klumpfisk"
-```
 Very basic classes
 
 ```lua
