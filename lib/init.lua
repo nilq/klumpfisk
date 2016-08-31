@@ -88,6 +88,38 @@ Event:new("keyreleased", function(...)
   Event:emit("keychanged", ..., false)
 end)
 
+Event:new("mousepressed", function(...)
+  Event:emit("mousechanged", ..., true)
+end)
+
+Event:new("mousereleased", function(...)
+  Event:emit("mousechanged", ..., false)
+end)
+
+Event:new("touchpressed", function(...)
+  Event:emit("touchchanged", ..., true)
+end)
+
+Event:new("touchreleased", function(...)
+  Event:emit("touchchanged", ..., false)
+end)
+
+Event:new("gamepadpressed", function(...)
+  Event:emit("gamepadchanged", ..., true)
+end)
+
+Event:new("gamepadreleased", function(...)
+  Event:emit("gamepadchanged", ..., false)
+end)
+
+Event:new("joystickpressed", function(...)
+  Event:emit("gamepadchanged", ..., true)
+end)
+
+Event:new("joystickreleased", function(...)
+  Event:emit("gamepadchanged", ..., false)
+end)
+
 Event:new("threaderror", function(thread, errorstr)
   print("This is interesting..? - thread error!\n" .. errorstr)
 end)
