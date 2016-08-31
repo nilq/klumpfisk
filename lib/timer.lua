@@ -16,6 +16,7 @@ Timer:newEvent("init", function(timer, f, a, using)
 end)
 
 Event:new("update", function(dt)
+  print(Timer.getList())
   for _, timer in ipairs(Timer:getList()) do
     timer:setTime(timer:getTime() - dt)
     if timer:getTime() <= 0 then

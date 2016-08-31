@@ -1,6 +1,4 @@
-Event = {
-  events = {}
-}
+Event = {events = {}}
 
 function Event:new(name, f, info)
   local info = info or {}

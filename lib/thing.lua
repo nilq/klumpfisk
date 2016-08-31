@@ -1,6 +1,7 @@
 Thing = setmetatable({}, {
   __call = function(parent)
     local thing = setmetatable({
+      events          = {},
       newValue        = Property.newValue,
       newBoolean      = Property.newBoolean,
       newTable        = Property.newTable,

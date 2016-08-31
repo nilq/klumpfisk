@@ -7,6 +7,7 @@ local modules = {
   "util/math",
   "timer",
   "input",
+  "camera",
 }
 
 love.graphics.setDefaultFilter("nearest", "nearest")
@@ -25,7 +26,7 @@ function love.run()
     love.math.setRandomSeed(os.time())
   end
 
-  if love.load() then
+  if love.load then
     Event:emit("load", arg)
   end
 

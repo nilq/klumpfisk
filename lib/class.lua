@@ -26,8 +26,9 @@ Class = setmetatable({}, {
 
     if listed then
       class:newTable("List", {})
+
       class:newEvent("init", function(thing)
-        table.insert(class:getList(), obj)
+        table.insert(class:getList(), thing)
         thing:newEvent("remove", function()
           table.remove(class:getList(), Utility.indexElement(thing, class:getList()))
         end)

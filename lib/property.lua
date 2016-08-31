@@ -34,7 +34,7 @@ function Property:newBoolean(name, initial, get, set,
   return self
 end
 
-function Property:newTable(name, initial, get, set
+function Property:newTable(name, initial, get, set,
     getCopy, getSub, setSub)
   Property.newValue(self, name, default, get, set)
 
