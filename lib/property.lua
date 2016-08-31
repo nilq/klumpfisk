@@ -1,6 +1,7 @@
 Property = {}
 
 function Property:newValue(name, initial, get, set)
+
   self[name] = initial
 
   self["get" .. name] = get or function(self)
@@ -36,7 +37,7 @@ end
 
 function Property:newTable(name, initial, get, set,
     getCopy, getSub, setSub)
-  Property.newValue(self, name, default, get, set)
+  self:newValue(name, initial, get, set)
 
   self["copy" .. name] = getCopy or function(self)
     return Utility.copy(self[name])
