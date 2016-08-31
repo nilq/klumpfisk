@@ -7,4 +7,18 @@ A fancy framework for game development to be used a long with LÖVE. Implementin
 *based on things and stuff from Luvnit by Justin van der Leij*
 
 ---
-#### <i class="icon-file"></i> Examples
+###Examples
+Use wherever you like -- i.e. *main.lua*
+```lua
+require "klumpfisk"
+```
+Very basic classes
+
+```lua
+local Animal = Class(nil) -- inherits nothing
+Animal:newValue("LegAmount", 0)
+	  :newBoolean("Head", true)
+local Human = Class(Animal) -- inherits from Animal
+	  :setLegAmount(2)
+	  :disableHead()
+```
