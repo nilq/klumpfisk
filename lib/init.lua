@@ -8,6 +8,7 @@ local modules = {
   "timer",
   "input",
   "camera",
+  "tween",
 }
 
 love.graphics.setDefaultFilter("nearest", "nearest")
