@@ -22,4 +22,4 @@ Event:new("update", function(dt)
       timer:emitEvent("call")
     end
   end
-end, {name = "TIMER"})
+end, {name = "_TIMER"})
