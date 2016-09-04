@@ -1,5 +1,5 @@
 Tween = Class(nil, true)
-  :newValue("Thing", Thing())
+  :newValue("Object", Object())
   :newValue("CurrentTime", 0)
   :newValue("Duration", 0)
   :newValue("BeginVars", {})
@@ -71,10 +71,10 @@ Tween:newValue("Tweens", {
   end,
 })
 
-Tween:newEvent("init", function(tween, thing, duration, vars, info)
+Tween:newEvent("init", function(tween, object, duration, vars, info)
   local info = info or {}
 
-  tween:setThing(thing)
+  tween:setObject(object)
        :setDuration(duration)
        :setBeginVars({})
        :setTargetVars({})
@@ -83,8 +83,8 @@ Tween:newEvent("init", function(tween, thing, duration, vars, info)
 
   for var, target in pairs(vars) do
     local sv = nil
-    if thing["get" .. var] then
-      sv = thing["get" .. var](thing)
+    if object["get" .. var] then
+      sv = object["get" .. var](object)
     end
     tween:setSubBeginVars(var, sv)
          :setSubTargetVars(var, target)
@@ -116,7 +116,7 @@ Event:new("update", function(dt)
     tween:emitEvent("update", tween, dt)
 
     if tween:getCurrentTime() == tween:getDuration() then
-      tween:emitEvent("complete", thing)
+      tween:emitEvent("complete", object)
       tween:emitEvent("remove")
     end
   end

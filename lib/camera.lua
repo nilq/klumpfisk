@@ -1,4 +1,4 @@
-Camera = Thing()
+Camera = Object()
   :newValue("X", 0):newValue("Y", 0)
   :newValue("ScaleX", 1):newValue("ScaleY", 1)
   :newValue("Rotation", 0)

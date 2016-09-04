@@ -1,4 +1,5 @@
-Input = Thing():newValue("Key", {})
+Input = Object()
+    :newValue("Key", {})
     :newValue("Button", {})
     :newValue("Touch", {})
     :newValue("Gamepad", {})

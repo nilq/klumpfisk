@@ -1,7 +1,7 @@
 local modules = {
   "property",
   "event",
-  "thing",
+  "object",
   "class",
   "util/utility",
   "util/math",
