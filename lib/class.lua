@@ -25,7 +25,7 @@ Class = setmetatable({}, {
     end
 
     if listed then
-      class:newTable("List", {})
+      class:newValue("List", {})
 
       class:newEvent("init", function(thing)
         table.insert(class:getList(), thing)

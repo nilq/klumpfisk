@@ -1,8 +1,8 @@
-Input = Thing():newTable("Key", {})
-    :newTable("Button", {})
-    :newTable("Touch", {})
-    :newTable("Gamepad", {})
-    :newTable("Joystick", {})
+Input = Thing():newValue("Key", {})
+    :newValue("Button", {})
+    :newValue("Touch", {})
+    :newValue("Gamepad", {})
+    :newValue("Joystick", {})
 
 Event:new("keychanged", function(key, state)
   Input:setSubKey(key, state)

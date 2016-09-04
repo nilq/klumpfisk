@@ -1,55 +1,60 @@
 Property = {}
 
-function Property:newValue(name, initial, get, set)
+function Property:newValue(name, initial, functions)
+  functions = functions or {}
 
   self[name] = initial
-
-  self["get" .. name] = get or function(self)
+  -- always
+  self["get" .. name] = functions.get or function(self)
     return self[name]
   end
-
-  self["set" .. name] = set or function(self, v)
+  self["set" .. name] = functions.set or function(self, v)
     self[name] = v
     return self
   end
+  -- type dependent
+  local x_type = type(initial)
+  if x_type == "boolean" then
+    self["enable" .. name] = functions.enable or function(self)
+      self["set" .. name](self, true)
+    end
 
-  return self
-end
+    self["disable" .. name] = functions.disable or function(self)
+      self["set" .. name](self, false)
+    end
 
-function Property:newBoolean(name, initial, get, set,
-    enable, disable, toggle)
-  Property.newValue(self, name, initial, get, set)
+    self["toggle" .. name] = functions.toggle or function(self)
+      self["set" .. name](self, not self[name])
+    end
+  elseif x_type == "table" then
+    self["copy" .. name] = functions.getCopy or function(self)
+      return Utility.copy(self[name])
+    end
 
-  self["enable" .. name] = enable or function(self)
-    self["set" .. name](self, true)
-  end
+    self["getSub" .. name] = functions.getSub or function(self, a)
+      return self[name][a]
+    end
 
-  self["disable" .. name] = disable or function(self)
-    self["set" .. name](self, false)
-  end
+    self["setSub" .. name] = functions.setSub or function(self, a, v)
+      self[name][a] = v
+      return self[name][a]
+    end
+  elseif x_type == "number" then
+    self["increment" .. name] = functions.increment or function(self, v)
+      self["set" .. name](self, self[name] + (v or 1))
+    end
 
-  self["toggle" .. name] = toggle or function(self)
-    self["set" .. name](self, not self[name])
-  end
+    self["decrement" .. name] = functions.decrement or function(self, v)
+      self["set" .. name](self, self[name] - (v or 1))
+    end
 
-  return self
-end
+    self["scale" .. name] = functions.scale or function(self, v)
+      self["set" .. name](self, self[name] * v)
+    end
 
-function Property:newTable(name, initial, get, set,
-    getCopy, getSub, setSub)
-  self:newValue(name, initial, get, set)
-
-  self["copy" .. name] = getCopy or function(self)
-    return Utility.copy(self[name])
-  end
-
-  self["getSub" .. name] = getSub or function(self, a)
-    return self[name][a]
-  end
-
-  self["setSub" .. name] = setSub or function(self, a, v)
-    self[name][a] = v
-    return self[name][a]
+    self["divide" .. name] = functions.divide or function(self, v)
+      self["set" .. name](self, self[name] / v)
+    end
   end
   return self
 end

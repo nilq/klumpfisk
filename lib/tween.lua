@@ -1,13 +1,13 @@
 Tween = Class(nil, true)
-  :newTable("Thing", Thing())
+  :newValue("Thing", Thing())
   :newValue("CurrentTime", 0)
   :newValue("Duration", 0)
-  :newTable("BeginVars", {})
-  :newTable("TargetVars", {})
+  :newValue("BeginVars", {})
+  :newValue("TargetVars", {})
   :newValue("Ease", "quadinout")
   :newValue("Bounce", 1.70158)
 
-Tween:newTable("Tweens", {
+Tween:newValue("Tweens", {
   linear = function(t, b, c, d)
     return c * t / d + b
   end,
