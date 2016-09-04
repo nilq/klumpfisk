@@ -15,6 +15,10 @@ function Property:newValue(name, initial, functions)
   -- type dependent
   local x_type = type(initial)
   if x_type == "boolean" then
+    self["is" .. name] = functions.get or function(self)
+      return self[name]
+    end
+
     self["enable" .. name] = functions.enable or function(self)
       self["set" .. name](self, true)
     end
