@@ -20,15 +20,18 @@ function Property:newValue(name, initial, functions)
     end
 
     self["enable" .. name] = functions.enable or function(self)
-      self["set" .. name](self, true)
+      self[name] = true
+      return self
     end
 
     self["disable" .. name] = functions.disable or function(self)
-      self["set" .. name](self, false)
+      self[name] = false
+      return self
     end
 
     self["toggle" .. name] = functions.toggle or function(self)
-      self["set" .. name](self, not self[name])
+      self[name] = not self[name]
+      return self
     end
   elseif x_type == "table" then
     self["copy" .. name] = functions.getCopy or function(self)
@@ -45,19 +48,27 @@ function Property:newValue(name, initial, functions)
     end
   elseif x_type == "number" then
     self["increment" .. name] = functions.increment or function(self, v)
-      self["set" .. name](self, self[name] + (v or 1))
+      self[name] = self[name] + (v or 1)
+      return self
     end
 
     self["decrement" .. name] = functions.decrement or function(self, v)
-      self["set" .. name](self, self[name] - (v or 1))
+      self[name] = self[name] - (v or 1)
+      return self
     end
 
     self["scale" .. name] = functions.scale or function(self, v)
-      self["set" .. name](self, self[name] * v)
+      self[name] = self[name] * v
+      return self
     end
 
     self["divide" .. name] = functions.divide or function(self, v)
-      self["set" .. name](self, self[name] / v)
+      self[name] = self[name] / v
+      return self
+    end
+  elseif x_type == "function" then
+    self["invoke"] = functions.invoke or function(self, ...)
+      return self[name](...)
     end
   end
   return self
