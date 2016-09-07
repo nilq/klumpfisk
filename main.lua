@@ -1,28 +1,14 @@
 require "lib"
 
-State = "game"
+local Emile = Class()
+    :setValue("NumberThingFoo", 1337)
+    :setValue("IamBool", false)
+    :setValue("Tablebebel", {hej = "hej", [2] = 420})
+    :setValue("Bar", function(name)
+      print(name)
+    end)
 
-local Foo = Class(nil)
+print(Emile:getNumberThingFoo())
 
-Foo:newValue("Table1", {})
-Foo:newValue("Number1", 2.0)
-
-local barTable = Foo:copyTable1()
-
-Foo:incrementNumber1(5)
-
-local barNumber = Foo:getNumber1()
-
-print(barTable, barNumber)
-
-Foo:scaleNumber1(3)
-
-barNumber = Foo:getNumber1()
-
-print(barNumber)
-
-Foo:divideNumber1(6)
-
-barNumber = Foo:getNumber1()
-
-print(barNumber)
+Emile:invokeBar("Hej")
+Emile:getBar()("Emile")
