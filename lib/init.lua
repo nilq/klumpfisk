@@ -114,11 +114,11 @@ Event:new("gamepadreleased", function(...)
 end)
 
 Event:new("joystickpressed", function(...)
-  Event:emit("gamepadchanged", ..., true)
+  Event:emit("joystickchanged", ..., true)
 end)
 
 Event:new("joystickreleased", function(...)
-  Event:emit("gamepadchanged", ..., false)
+  Event:emit("joystickchanged", ..., false)
 end)
 
 Event:new("threaderror", function(thread, errorstr)

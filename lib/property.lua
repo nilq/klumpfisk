@@ -34,8 +34,12 @@ function Property:newValue(name, initial, functions)
       return self
     end
   elseif x_type == "table" then
-    self["copy" .. name] = functions.getCopy or function(self)
-      return Utility.copy(self[name])
+    self["shallowCopy" .. name] = functions.getCopy or function(self)
+      return Utility.shallowCopy(self[name])
+    end
+
+    self["deepCopy" .. name] = functions.getCopy or function(self)
+      return Utility.shallowCopy(self[name])
     end
 
     self["getSub" .. name] = functions.getSub or function(self, a)

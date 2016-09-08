@@ -21,7 +21,7 @@ function Utility.mergeTable(a, b)
   return a
 end
 
-function Utility.copy(n)
+function Utility.shallowCopy(n)
   local n_type, copy = type(n), n
   if n_type == "table" then
     copy = {}
