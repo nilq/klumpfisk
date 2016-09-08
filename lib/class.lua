@@ -6,7 +6,7 @@ Class = setmetatable({}, {
     setmetatable(class, {
       __index = parent,
       __call = function(self, ...)
-        local obj = setmetatable(obj(), {
+        local obj = setmetatable(Object(), {
           __index = class,
         })
         class:emitEvent("init", obj, ...)
