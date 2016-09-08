@@ -7,11 +7,10 @@ function Event:new(name, f, info)
   end
   local event = {
     newValue   = Property.newValue,
-    newBoolean = Property.newBoolean,
   }
   event:newValue("Function", f)
        :newValue("Name", info.subName)
-       :newValue("Active", info.active or info.active == nil)
+       :newValue("Active", info.active or true)
   table.insert(self.events[name], info.index or #self.events[name] + 1, event)
 
   return event

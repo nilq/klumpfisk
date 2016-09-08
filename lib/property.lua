@@ -71,8 +71,12 @@ function Property:newValue(name, initial, functions)
       return self
     end
   elseif x_type == "function" then
-    self["invoke"] = functions.invoke or function(self, ...)
+    self["call"] = functions.invoke or function(self, ...)
       return self[name](...)
+    end
+  elseif x_type == "string" then
+    self["concat"] = functions.invoke or function(self, v)
+      self[name] = self[name] .. v
     end
   end
   return self
